@@ -1,12 +1,10 @@
-# NO LONGER MAINTAINED. ANY VERSION AFTER 1.19.4 WILL NOT BE SUPPORTED! USE [PAPER'S PARTICLEBUILDER](https://jd.papermc.io/paper/1.20/com/destroystokyo/paper/ParticleBuilder.html)
-
 <h1 align="center">
   <img width=250 height=250 src="https://raw.githubusercontent.com/ByteZ1337/ParticleLib/0703161cf8b3402541c895885fbd0083ac688394/.github/img/logo.svg" />
   <br>ParticleLib<br>
 </h1>
 
 <p align="center">
-  <b>A spigot library supporting all particles from <code>1.8</code> to <code>1.19.3</code></b><br><br>
+  <b>A spigot library supporting all particles from <code>1.8</code> to <code>1.20+</code></b><br><br>
   <a href="https://app.codacy.com/manual/ByteZ1337/ParticleLib?utm_source=github.com&utm_medium=referral&utm_content=ByteZ1337/ParticleLib&utm_campaign=Badge_Grade_Dashboard">
     <img src="https://api.codacy.com/project/badge/Grade/166f125b74014326831ca21c1d7df65b" alt="codacy"/>
   </a>
@@ -29,45 +27,38 @@
   <a href="#usage">Usage</a>
 </p>
 
-## Support
-
-Join the [Discord](https://discord.gg/EpVMXtXB2t) if you have any questions. **Don't** open an issue to ask for support.
-
 ## Features
 
-* Multiversion support from 1.8 - 1.19.3 <sup>(All in one Jar)</sup>
+* Multiversion support from 1.8 - 1.20+ <sup>(All in one Jar)</sup>
 * Colored particles
 * Particles with custom velocities
 * Particles with textures
 * Support for every particle in minecraft
 * An easy and fluent API to easily spawn particles with custom data
 
-## Download
-
-The latest version <img src="https://img.shields.io/github/v/release/ByteZ1337/ParticleLib"/> can be downloaded on the
-<a href="https://github.com/ByteZ1337/ParticleLib/releases">releases</a> page.<br>
-
 ### Maven
+```xml
+<repository>
+    <id>jitpack.io</id>
+    <url>https://jitpack.io</url>
+</repository>
+```
 
 ```xml
-<dependencies>
-    <dependency>
-        <groupId>xyz.xenondevs</groupId>
-        <artifactId>particle</artifactId>
-        <version>1.8.4</version>
-    </dependency>
-</dependencies>
+<dependency>
+    <groupId>com.github.Despical</groupId>
+    <artifactId>ParticleLib</artifactId>
+    <version>1.0.0</version>
+</dependency>
 ```
 
 ### Gradle
 
 ```groovy
 dependencies {
-    implementation 'xyz.xenondevs:particle:1.8.4'
+    implementation 'com.github.Despical:ParticleLib:1.0.0'
 }
 ```
-
-<small>Note: ParticleLib is on the central repository, so no extra repositories are required.</small>
 
 ## Usage
 

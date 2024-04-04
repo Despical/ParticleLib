@@ -3,15 +3,17 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
+    <!-- This project is a fork from ByteZ1337/ParticleLib -->
+    <!-- That supports Minecraft 1.20 and higher versions.  -->
     <modelVersion>4.0.0</modelVersion>
-    <groupId>xyz.xenondevs</groupId>
+    <groupId>me.despical</groupId>
     <artifactId>particle</artifactId>
-    <version>1.8.4</version>
+    <version>1.0.0</version>
     <packaging>jar</packaging>
 
     <name>ParticleLib</name>
     <description>Spigot library for particles</description>
-    <url>https://github.com/ByteZ1337/ParticleLib</url>
+    <url>https://github.com/Despical/ParticleLib</url>
 
     <licenses>
         <license>
@@ -27,85 +29,25 @@
             <organization>xyz.xenondevs</organization>
             <organizationUrl>https://github.com/ByteZ1337/ParticleLib</organizationUrl>
         </developer>
+        <developer>
+            <name>Despical</name>
+            <url>https://spigotmc.org/resources/authors/615094</url>
+        </developer>
     </developers>
 
-    <scm>
-        <connection>scm:git:git://github.com/ByteZ1337/ParticleLib.git</connection>
-        <developerConnection>scm:git:ssh://github.com:ByteZ1337/ParticleLib.git</developerConnection>
-        <url>https://github.com/ByteZ1337/ParticleLib/tree/master</url>
-    </scm>
-
-    <distributionManagement>
-        <snapshotRepository>
-            <id>ossrh</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-        </snapshotRepository>
-        <repository>
-            <id>ossrh</id>
-            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-        </repository>
-    </distributionManagement>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
 
     <build>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.11.0</version>
+                <version>3.8.1</version>
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-source-plugin</artifactId>
-                <version>3.2.1</version>
-                <executions>
-                    <execution>
-                        <id>attach-sources</id>
-                        <goals>
-                            <goal>jar-no-fork</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <version>3.5.0</version>
-                <executions>
-                    <execution>
-                        <id>attach-javadocs</id>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-gpg-plugin</artifactId>
-                <version>3.0.1</version>
-                <executions>
-                    <execution>
-                        <id>sign-artifacts</id>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>sign</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.sonatype.plugins</groupId>
-                <artifactId>nexus-staging-maven-plugin</artifactId>
-                <version>1.6.13</version>
-                <extensions>true</extensions>
-                <configuration>
-                    <serverId>ossrh</serverId>
-                    <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-                    <autoReleaseAfterClose>true</autoReleaseAfterClose>
                 </configuration>
             </plugin>
         </plugins>
@@ -126,5 +68,4 @@
             <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
         </repository>
     </repositories>
-
 </project>
