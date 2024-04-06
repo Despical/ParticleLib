@@ -34,6 +34,7 @@ import me.despical.particle.utils.PacketUtils;
 
 import java.awt.*;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Collection;
 import java.util.Objects;
 import java.util.function.Predicate;
@@ -363,9 +364,15 @@ public class ParticleBuilder {
      * Displays the given particle to all players.
      */
     public void display() {
+        List<Player> players = Objects.requireNonNull(location.getWorld()).getPlayers();
+
+        if (ParticleEffect.USE_API) {
+            players.forEach(player -> player.spawnParticle(particle.toBukkit(), location, amount));
+            return;
+        }
+
         Object packet = toPacket();
-        Objects.requireNonNull(location.getWorld()).getPlayers()
-            .forEach(p -> PacketUtils.sendPacket(p, packet));
+        players.forEach(p -> PacketUtils.sendPacket(p, packet));
     }
 
     /**
@@ -374,6 +381,11 @@ public class ParticleBuilder {
      * @param players The players that should see the particle.
      */
     public void display(Player... players) {
+        if (ParticleEffect.USE_API) {
+            Arrays.asList(players).forEach(player -> player.spawnParticle(particle.toBukkit(), location, amount));
+            return;
+        }
+
         this.display(Arrays.asList(players));
     }
 
@@ -384,6 +396,11 @@ public class ParticleBuilder {
      *               specific {@link Player Players}.
      */
     public void display(Predicate<Player> filter) {
+        if (ParticleEffect.USE_API) {
+            Bukkit.getOnlinePlayers().stream().filter(filter).forEach(player -> player.spawnParticle(particle.toBukkit(), location, amount));
+            return;
+        }
+
         Object packet = toPacket();
         Bukkit.getOnlinePlayers()
             .stream()
@@ -397,6 +414,11 @@ public class ParticleBuilder {
      * @param players a list of players that should receive the particle packet.
      */
     public void display(Collection<? extends Player> players) {
+        if (ParticleEffect.USE_API) {
+            players.forEach(player -> player.spawnParticle(particle.toBukkit(), location, amount));
+            return;
+        }
+        
         Object packet = toPacket();
         players.stream()
             .filter(p -> p.getWorld().equals(location.getWorld()))

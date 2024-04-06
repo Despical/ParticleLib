@@ -32,6 +32,7 @@ import me.despical.particle.data.color.*;
 import me.despical.particle.utils.ReflectionUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.Particle;
 import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 import me.despical.particle.data.texture.BlockTexture;
@@ -149,7 +150,6 @@ import static me.despical.particle.PropertyType.*;
  * <li>{@link #WATER_WAKE}</li>
  * <li>{@link #WAX_OFF}</li>
  * <li>{@link #WAX_ON}</li>
- * <li>{@link #WHITE_ASH}</li>
  * </ul>
  *
  * @author ByteZ
@@ -1293,15 +1293,21 @@ public enum ParticleEffect {
      * A {@link HashMap} to store the nms instances of all currently supported
      * {@link ParticleEffect ParticleEffects}.
      */
-    public static final Map<ParticleEffect, Object> NMS_EFFECTS;
+    public static Map<ParticleEffect, Object> NMS_EFFECTS;
+
+    public static final boolean USE_API = ReflectionUtils.MINECRAFT_VERSION >= 1.9;
     
     static {
-        //noinspection ConstantConditions
-        NMS_EFFECTS = Collections.unmodifiableMap(
-            VALUES.stream()
-                .filter(effect -> !"NONE".equals(effect.getFieldName()))
-                .collect(Collectors.toMap(Function.identity(), ParticleEffect::getNMSObject))
-        );
+        if (!USE_API) {
+            try {
+                //noinspection ConstantConditions
+                NMS_EFFECTS = Collections.unmodifiableMap(
+                        VALUES.stream()
+                                .filter(effect -> !"NONE".equals(effect.getFieldName()))
+                                .collect(Collectors.toMap(Function.identity(), ParticleEffect::getNMSObject))
+                );
+            } catch (Exception ignored) {}
+        }
     }
     
     /**
@@ -1341,6 +1347,10 @@ public enum ParticleEffect {
      */
     public List<PropertyType> getProperties() {
         return properties;
+    }
+
+    public Particle toBukkit() {
+        return Particle.valueOf(this.getFieldName());
     }
     
     /**
@@ -1659,6 +1669,14 @@ public enum ParticleEffect {
         if (data != null)
             data.setEffect(this);
         ParticlePacket packet = new ParticlePacket(this, offsetX, offsetY, offsetZ, speed, amount, data);
+
+        if (USE_API) {
+            players.stream()
+                    .filter(p -> p.getWorld().equals(location.getWorld()))
+                    .forEach(p -> p.spawnParticle(toBukkit(), location, amount));
+            return;
+        }
+
         Object nmsPacket = packet.createPacket(location);
         players.stream()
             .filter(p -> p.getWorld().equals(location.getWorld()))
