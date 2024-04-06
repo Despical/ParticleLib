@@ -1350,7 +1350,7 @@ public enum ParticleEffect {
     }
 
     public Particle toBukkit() {
-        return Particle.valueOf(this.getFieldName());
+        return Particle.valueOf(this.getFieldName().toUpperCase(Locale.ENGLISH));
     }
     
     /**
