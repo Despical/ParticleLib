@@ -19,19 +19,14 @@
 package me.despical.particle;
 
 import me.despical.particle.utils.NMSUtils;
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 import me.despical.particle.data.ParticleData;
 import me.despical.particle.data.color.RegularColor;
-import me.despical.particle.utils.PacketUtils;
 
 import java.awt.*;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Collection;
-import java.util.Objects;
 import java.util.function.Predicate;
 
 /**
@@ -43,9 +38,9 @@ import java.util.function.Predicate;
 public class ParticleBuilder {
 
     /**
-     * The {@link me.despical.particle.ParticleEffect} that should be displayed by the client.
+     * The {@link ParticleEffect} that should be displayed by the client.
      */
-    private final me.despical.particle.ParticleEffect particle;
+    private ParticleEffect particle;
     /**
      * The {@link Location} of the particle.
      */
@@ -57,9 +52,9 @@ public class ParticleBuilder {
      * spawn.
      * <p>
      * It represents the x velocity a particle with the
-     * {@link me.despical.particle.PropertyType#DIRECTIONAL} property should have.
+     * {@link PropertyType#DIRECTIONAL} property should have.
      * <p>
-     * It sets the red value of a {@link me.despical.particle.PropertyType#COLORABLE}
+     * It sets the red value of a {@link PropertyType#COLORABLE}
      * particle. However, since 1.13 a ParticleParam has to be used to set
      * the colors of redstone.
      */
@@ -71,9 +66,9 @@ public class ParticleBuilder {
      * spawn.
      * <p>
      * It represents the y velocity a particle with the
-     * {@link me.despical.particle.PropertyType#DIRECTIONAL}  property should have.
+     * {@link PropertyType#DIRECTIONAL}  property should have.
      * <p>
-     * It sets the green value of a {@link me.despical.particle.PropertyType#COLORABLE}
+     * It sets the green value of a {@link PropertyType#COLORABLE}
      * particle. However, since 1.13 a ParticleParam has to be used to set
      * the colors of redstone.
      */
@@ -85,9 +80,9 @@ public class ParticleBuilder {
      * spawn.
      * <p>
      * It represents the z velocity a particle with the
-     * {@link me.despical.particle.PropertyType#DIRECTIONAL} property should have.
+     * {@link PropertyType#DIRECTIONAL} property should have.
      * <p>
-     * It sets the blue value of a {@link me.despical.particle.PropertyType#COLORABLE}
+     * It sets the blue value of a {@link PropertyType#COLORABLE}
      * particle. However, since 1.13 a ParticleParam has to be used to set
      * the colors of redstone.
      */
@@ -95,7 +90,7 @@ public class ParticleBuilder {
     /**
      * Normally this field is used to multiply the velocity of a
      * particle by the given speed. There are however some special cases
-     * where this value is used for something different. (e.g. {@link me.despical.particle.ParticleEffect#NOTE}).
+     * where this value is used for something different. (e.g. {@link ParticleEffect#NOTE}).
      */
     private float speed = 1;
     /**
@@ -112,10 +107,10 @@ public class ParticleBuilder {
     /**
      * Initializes a new {@link ParticleBuilder}
      *
-     * @param particle The {@link me.despical.particle.ParticleEffect} of the builder.
+     * @param particle The {@link ParticleEffect} of the builder.
      * @param location The location at which the particle should be displayed
      */
-    public ParticleBuilder(me.despical.particle.ParticleEffect particle, Location location) {
+    public ParticleBuilder(ParticleEffect particle, Location location) {
         this.particle = particle;
         this.location = location;
     }
@@ -123,18 +118,21 @@ public class ParticleBuilder {
     /**
      * Initializes a new {@link ParticleBuilder}
      *
-     * @param particle The {@link me.despical.particle.ParticleEffect} of the builder.
+     * @param particle The {@link ParticleEffect} of the builder.
      */
-    public ParticleBuilder(me.despical.particle.ParticleEffect particle) {
+    public ParticleBuilder(ParticleEffect particle) {
         this.particle = particle;
         this.location = null;
     }
 
+    public void setParticle(ParticleEffect particle) {
+        this.particle = particle;
+    }
 
     /**
-     * The {@link me.despical.particle.ParticleEffect} that should be displayed by the client.
+     * The {@link ParticleEffect} that should be displayed by the client.
      */
-    public me.despical.particle.ParticleEffect getParticle() {
+    public ParticleEffect getParticle() {
         return particle;
     }
 
@@ -174,9 +172,9 @@ public class ParticleBuilder {
      * spawn.
      * <p>
      * It represents the x velocity a particle with the
-     * {@link me.despical.particle.PropertyType#DIRECTIONAL} property should have.
+     * {@link PropertyType#DIRECTIONAL} property should have.
      * <p>
-     * It sets the red value of a {@link me.despical.particle.PropertyType#COLORABLE}
+     * It sets the red value of a {@link PropertyType#COLORABLE}
      * particle. However, since 1.13 a ParticleParam has to be used to set
      * the colors of redstone.
      */
@@ -217,9 +215,9 @@ public class ParticleBuilder {
      * spawn.
      * <p>
      * It represents the y velocity a particle with the
-     * {@link me.despical.particle.PropertyType#DIRECTIONAL}  property should have.
+     * {@link PropertyType#DIRECTIONAL}  property should have.
      * <p>
-     * It sets the green value of a {@link me.despical.particle.PropertyType#COLORABLE}
+     * It sets the green value of a {@link PropertyType#COLORABLE}
      * particle. However, since 1.13 a ParticleParam has to be used to set
      * the colors of redstone.
      */
@@ -258,9 +256,9 @@ public class ParticleBuilder {
      * spawn.
      * <p>
      * It represents the z velocity a particle with the
-     * {@link me.despical.particle.PropertyType#DIRECTIONAL} property should have.
+     * {@link PropertyType#DIRECTIONAL} property should have.
      * <p>
-     * It sets the blue value of a {@link me.despical.particle.PropertyType#COLORABLE}
+     * It sets the blue value of a {@link PropertyType#COLORABLE}
      * particle. However, since 1.13 a ParticleParam has to be used to set
      * the colors of redstone.
      */
@@ -282,7 +280,7 @@ public class ParticleBuilder {
     /**
      * Normally this field is used to multiply the velocity of a
      * particle by the given speed. There are however some special cases
-     * where this value is used for something different. (e.g. {@link me.despical.particle.ParticleEffect#NOTE}).
+     * where this value is used for something different. (e.g. {@link ParticleEffect#NOTE}).
      */
     public float getSpeed() {
         return speed;
@@ -328,7 +326,7 @@ public class ParticleBuilder {
 
     /**
      * Sets the color of the particle. Note that particle
-     * needs the {@link me.despical.particle.PropertyType#COLORABLE} PropertyType
+     * needs the {@link PropertyType#COLORABLE} PropertyType
      * to work.
      *
      * @param color the {@link Color} of the particle.
@@ -341,9 +339,9 @@ public class ParticleBuilder {
     }
 
     /**
-     * Creates a new {@link me.despical.particle.ParticlePacket} wit the given values.
+     * Creates a new {@link ParticlePacket} wit the given values.
      *
-     * @return the new {@link me.despical.particle.ParticlePacket}
+     * @return the new {@link ParticlePacket}
      * @throws IllegalStateException if the location field isn't set yet.
      */
     public Object toPacket() {
@@ -351,7 +349,7 @@ public class ParticleBuilder {
             throw new IllegalStateException("Missing location of particle.");
         if (this.particleData != null)
             this.particleData.setEffect(this.particle);
-        me.despical.particle.ParticlePacket packet = new ParticlePacket(this.particle, this.offsetX, this.offsetY, this.offsetZ, this.speed, this.amount, this.particleData);
+        ParticlePacket packet = new ParticlePacket(this.particle, this.offsetX, this.offsetY, this.offsetZ, this.speed, this.amount, this.particleData);
         return packet.createPacket(this.location);
     }
 
