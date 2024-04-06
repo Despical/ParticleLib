@@ -1,25 +1,19 @@
 /*
- * MIT License
+ * KOTL - Don't let others climb to top of the ladders!
+ * Copyright (C) 2024  Berke Akçen
  *
- * Copyright (c) 2021 ByteZ1337
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
 package me.despical.particle;
@@ -29,6 +23,7 @@ import me.despical.particle.data.SculkChargeData;
 import me.despical.particle.data.ShriekData;
 import me.despical.particle.data.VibrationData;
 import me.despical.particle.data.color.*;
+import me.despical.particle.utils.NMSUtils;
 import me.despical.particle.utils.ReflectionUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -448,7 +443,7 @@ public enum ParticleEffect {
      * <li>Speed value: Doesn't influence the particle.</li>
      * <li>Extra: This particle supports 2 colors. It will display a fade animation between the two colors. It also
      * supports a custom size.
-     * More information can be found here: {@link PropertyType#DUST}, {@link DustColorTransitionData}</li>
+     * More information can be found here: {@link me.despical.particle.PropertyType#DUST}, {@link DustColorTransitionData}</li>
      * </ul>
      */
     DUST_COLOR_TRANSITION(version -> version < 17 ? "NONE" : "dust_color_transition", COLORABLE, DUST),
@@ -1280,10 +1275,10 @@ public enum ParticleEffect {
     private final DoubleFunction<String> fieldNameMapper;
     
     /**
-     * A list of {@link PropertyType properties}
+     * A list of {@link me.despical.particle.PropertyType properties}
      * the current particle instance supports.
      */
-    private final List<PropertyType> properties;
+    private final List<me.despical.particle.PropertyType> properties;
     
     /**
      * An array with all {@link ParticleEffect ParticleEffects}.
@@ -1324,9 +1319,9 @@ public enum ParticleEffect {
      *
      * @param fieldNameMapper the {@link IntFunction} to map the version to the name of the
      *                        respective particle.
-     * @param properties      A list of {@link PropertyType properties} supported by this particle.
+     * @param properties      A list of {@link me.despical.particle.PropertyType properties} supported by this particle.
      */
-    ParticleEffect(DoubleFunction<String> fieldNameMapper, PropertyType... properties) {
+    ParticleEffect(DoubleFunction<String> fieldNameMapper, me.despical.particle.PropertyType... properties) {
         this.fieldNameMapper = fieldNameMapper;
         this.properties = Collections.unmodifiableList(Arrays.asList(properties));
     }
@@ -1343,21 +1338,17 @@ public enum ParticleEffect {
     
     /**
      * Gets a list of properties the current particle instance supports.
-     * @return a list of supported {@link PropertyType properties}
+     * @return a list of supported {@link me.despical.particle.PropertyType properties}
      */
-    public List<PropertyType> getProperties() {
+    public List<me.despical.particle.PropertyType> getProperties() {
         return properties;
     }
 
-    public Particle toBukkit() {
-        return Particle.valueOf(this.getFieldName().toUpperCase(Locale.ENGLISH));
-    }
-    
     /**
-     * Checks if the current {@link ParticleEffect} instance has a specific {@link PropertyType}.
+     * Checks if the current {@link ParticleEffect} instance has a specific {@link me.despical.particle.PropertyType}.
      *
-     * @param propertyType the {@link PropertyType} that should be searched.
-     * @return {@code true} if the current {@link ParticleEffect} instance supports the given {@link PropertyType}.
+     * @param propertyType the {@link me.despical.particle.PropertyType} that should be searched.
+     * @return {@code true} if the current {@link ParticleEffect} instance supports the given {@link me.despical.particle.PropertyType}.
      */
     public boolean hasProperty(PropertyType propertyType) {
         return propertyType != null && properties.contains(propertyType);
@@ -1670,17 +1661,8 @@ public enum ParticleEffect {
             data.setEffect(this);
         ParticlePacket packet = new ParticlePacket(this, offsetX, offsetY, offsetZ, speed, amount, data);
 
-        if (USE_API) {
-            players.stream()
-                    .filter(p -> p.getWorld().equals(location.getWorld()))
-                    .forEach(p -> p.spawnParticle(toBukkit(), location, amount));
-            return;
-        }
-
         Object nmsPacket = packet.createPacket(location);
-        players.stream()
-            .filter(p -> p.getWorld().equals(location.getWorld()))
-            .forEach(p -> PacketUtils.sendPacket(p, nmsPacket));
+		NMSUtils.display(nmsPacket, this, location, amount);
     }
     
 }

@@ -1,29 +1,24 @@
 /*
- * MIT License
+ * KOTL - Don't let others climb to top of the ladders!
+ * Copyright (C) 2024  Berke Akçen
  *
- * Copyright (c) 2021 ByteZ1337
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
 package me.despical.particle;
 
+import me.despical.particle.utils.NMSUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
@@ -48,9 +43,9 @@ import java.util.function.Predicate;
 public class ParticleBuilder {
 
     /**
-     * The {@link ParticleEffect} that should be displayed by the client.
+     * The {@link me.despical.particle.ParticleEffect} that should be displayed by the client.
      */
-    private final ParticleEffect particle;
+    private final me.despical.particle.ParticleEffect particle;
     /**
      * The {@link Location} of the particle.
      */
@@ -62,9 +57,9 @@ public class ParticleBuilder {
      * spawn.
      * <p>
      * It represents the x velocity a particle with the
-     * {@link PropertyType#DIRECTIONAL} property should have.
+     * {@link me.despical.particle.PropertyType#DIRECTIONAL} property should have.
      * <p>
-     * It sets the red value of a {@link PropertyType#COLORABLE}
+     * It sets the red value of a {@link me.despical.particle.PropertyType#COLORABLE}
      * particle. However, since 1.13 a ParticleParam has to be used to set
      * the colors of redstone.
      */
@@ -76,9 +71,9 @@ public class ParticleBuilder {
      * spawn.
      * <p>
      * It represents the y velocity a particle with the
-     * {@link PropertyType#DIRECTIONAL}  property should have.
+     * {@link me.despical.particle.PropertyType#DIRECTIONAL}  property should have.
      * <p>
-     * It sets the green value of a {@link PropertyType#COLORABLE}
+     * It sets the green value of a {@link me.despical.particle.PropertyType#COLORABLE}
      * particle. However, since 1.13 a ParticleParam has to be used to set
      * the colors of redstone.
      */
@@ -90,9 +85,9 @@ public class ParticleBuilder {
      * spawn.
      * <p>
      * It represents the z velocity a particle with the
-     * {@link PropertyType#DIRECTIONAL} property should have.
+     * {@link me.despical.particle.PropertyType#DIRECTIONAL} property should have.
      * <p>
-     * It sets the blue value of a {@link PropertyType#COLORABLE}
+     * It sets the blue value of a {@link me.despical.particle.PropertyType#COLORABLE}
      * particle. However, since 1.13 a ParticleParam has to be used to set
      * the colors of redstone.
      */
@@ -100,7 +95,7 @@ public class ParticleBuilder {
     /**
      * Normally this field is used to multiply the velocity of a
      * particle by the given speed. There are however some special cases
-     * where this value is used for something different. (e.g. {@link ParticleEffect#NOTE}).
+     * where this value is used for something different. (e.g. {@link me.despical.particle.ParticleEffect#NOTE}).
      */
     private float speed = 1;
     /**
@@ -117,10 +112,10 @@ public class ParticleBuilder {
     /**
      * Initializes a new {@link ParticleBuilder}
      *
-     * @param particle The {@link ParticleEffect} of the builder.
+     * @param particle The {@link me.despical.particle.ParticleEffect} of the builder.
      * @param location The location at which the particle should be displayed
      */
-    public ParticleBuilder(ParticleEffect particle, Location location) {
+    public ParticleBuilder(me.despical.particle.ParticleEffect particle, Location location) {
         this.particle = particle;
         this.location = location;
     }
@@ -128,18 +123,18 @@ public class ParticleBuilder {
     /**
      * Initializes a new {@link ParticleBuilder}
      *
-     * @param particle The {@link ParticleEffect} of the builder.
+     * @param particle The {@link me.despical.particle.ParticleEffect} of the builder.
      */
-    public ParticleBuilder(ParticleEffect particle) {
+    public ParticleBuilder(me.despical.particle.ParticleEffect particle) {
         this.particle = particle;
         this.location = null;
     }
 
 
     /**
-     * The {@link ParticleEffect} that should be displayed by the client.
+     * The {@link me.despical.particle.ParticleEffect} that should be displayed by the client.
      */
-    public ParticleEffect getParticle() {
+    public me.despical.particle.ParticleEffect getParticle() {
         return particle;
     }
 
@@ -179,9 +174,9 @@ public class ParticleBuilder {
      * spawn.
      * <p>
      * It represents the x velocity a particle with the
-     * {@link PropertyType#DIRECTIONAL} property should have.
+     * {@link me.despical.particle.PropertyType#DIRECTIONAL} property should have.
      * <p>
-     * It sets the red value of a {@link PropertyType#COLORABLE}
+     * It sets the red value of a {@link me.despical.particle.PropertyType#COLORABLE}
      * particle. However, since 1.13 a ParticleParam has to be used to set
      * the colors of redstone.
      */
@@ -222,9 +217,9 @@ public class ParticleBuilder {
      * spawn.
      * <p>
      * It represents the y velocity a particle with the
-     * {@link PropertyType#DIRECTIONAL}  property should have.
+     * {@link me.despical.particle.PropertyType#DIRECTIONAL}  property should have.
      * <p>
-     * It sets the green value of a {@link PropertyType#COLORABLE}
+     * It sets the green value of a {@link me.despical.particle.PropertyType#COLORABLE}
      * particle. However, since 1.13 a ParticleParam has to be used to set
      * the colors of redstone.
      */
@@ -263,9 +258,9 @@ public class ParticleBuilder {
      * spawn.
      * <p>
      * It represents the z velocity a particle with the
-     * {@link PropertyType#DIRECTIONAL} property should have.
+     * {@link me.despical.particle.PropertyType#DIRECTIONAL} property should have.
      * <p>
-     * It sets the blue value of a {@link PropertyType#COLORABLE}
+     * It sets the blue value of a {@link me.despical.particle.PropertyType#COLORABLE}
      * particle. However, since 1.13 a ParticleParam has to be used to set
      * the colors of redstone.
      */
@@ -287,7 +282,7 @@ public class ParticleBuilder {
     /**
      * Normally this field is used to multiply the velocity of a
      * particle by the given speed. There are however some special cases
-     * where this value is used for something different. (e.g. {@link ParticleEffect#NOTE}).
+     * where this value is used for something different. (e.g. {@link me.despical.particle.ParticleEffect#NOTE}).
      */
     public float getSpeed() {
         return speed;
@@ -333,7 +328,7 @@ public class ParticleBuilder {
 
     /**
      * Sets the color of the particle. Note that particle
-     * needs the {@link PropertyType#COLORABLE} PropertyType
+     * needs the {@link me.despical.particle.PropertyType#COLORABLE} PropertyType
      * to work.
      *
      * @param color the {@link Color} of the particle.
@@ -346,9 +341,9 @@ public class ParticleBuilder {
     }
 
     /**
-     * Creates a new {@link ParticlePacket} wit the given values.
+     * Creates a new {@link me.despical.particle.ParticlePacket} wit the given values.
      *
-     * @return the new {@link ParticlePacket}
+     * @return the new {@link me.despical.particle.ParticlePacket}
      * @throws IllegalStateException if the location field isn't set yet.
      */
     public Object toPacket() {
@@ -356,7 +351,7 @@ public class ParticleBuilder {
             throw new IllegalStateException("Missing location of particle.");
         if (this.particleData != null)
             this.particleData.setEffect(this.particle);
-        ParticlePacket packet = new ParticlePacket(this.particle, this.offsetX, this.offsetY, this.offsetZ, this.speed, this.amount, this.particleData);
+        me.despical.particle.ParticlePacket packet = new ParticlePacket(this.particle, this.offsetX, this.offsetY, this.offsetZ, this.speed, this.amount, this.particleData);
         return packet.createPacket(this.location);
     }
 
@@ -364,15 +359,7 @@ public class ParticleBuilder {
      * Displays the given particle to all players.
      */
     public void display() {
-        List<Player> players = Objects.requireNonNull(location.getWorld()).getPlayers();
-
-        if (ParticleEffect.USE_API) {
-            players.forEach(player -> player.spawnParticle(particle.toBukkit(), location, amount));
-            return;
-        }
-
-        Object packet = toPacket();
-        players.forEach(p -> PacketUtils.sendPacket(p, packet));
+		NMSUtils.display(toPacket(), particle, location, amount, location.getWorld().getPlayers());
     }
 
     /**
@@ -381,12 +368,7 @@ public class ParticleBuilder {
      * @param players The players that should see the particle.
      */
     public void display(Player... players) {
-        if (ParticleEffect.USE_API) {
-            Arrays.asList(players).forEach(player -> player.spawnParticle(particle.toBukkit(), location, amount));
-            return;
-        }
-
-        this.display(Arrays.asList(players));
+        NMSUtils.display(toPacket(), particle, location, amount, players);
     }
 
     /**
@@ -396,16 +378,7 @@ public class ParticleBuilder {
      *               specific {@link Player Players}.
      */
     public void display(Predicate<Player> filter) {
-        if (ParticleEffect.USE_API) {
-            Bukkit.getOnlinePlayers().stream().filter(filter).forEach(player -> player.spawnParticle(particle.toBukkit(), location, amount));
-            return;
-        }
-
-        Object packet = toPacket();
-        Bukkit.getOnlinePlayers()
-            .stream()
-            .filter(p -> filter.test(p) && p.getWorld().equals(location.getWorld()))
-            .forEach(p -> PacketUtils.sendPacket(p, packet));
+        NMSUtils.display(toPacket(), particle, location, amount, filter);
     }
 
     /**
@@ -414,15 +387,7 @@ public class ParticleBuilder {
      * @param players a list of players that should receive the particle packet.
      */
     public void display(Collection<? extends Player> players) {
-        if (ParticleEffect.USE_API) {
-            players.forEach(player -> player.spawnParticle(particle.toBukkit(), location, amount));
-            return;
-        }
-        
-        Object packet = toPacket();
-        players.stream()
-            .filter(p -> p.getWorld().equals(location.getWorld()))
-            .forEach(p -> PacketUtils.sendPacket(p, packet));
+		NMSUtils.display(toPacket(), particle, location, amount, players);
     }
 
 }

@@ -1,25 +1,19 @@
 /*
- * MIT License
+ * KOTL - Don't let others climb to top of the ladders!
+ * Copyright (C) 2024  Berke Akçen
  *
- * Copyright (c) 2021 ByteZ1337
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
 package me.despical.particle;
@@ -54,9 +48,9 @@ import static me.despical.particle.ParticleEffect.*;
 public final class ParticlePacket {
     
     /**
-     * The {@link ParticleEffect} which should be displayed by the client.
+     * The {@link me.despical.particle.ParticleEffect} which should be displayed by the client.
      */
-    private final ParticleEffect particle;
+    private final me.despical.particle.ParticleEffect particle;
     /**
      * This field has three uses:
      * <p>
@@ -64,9 +58,9 @@ public final class ParticlePacket {
      * spawn.
      * <p>
      * It represents the x velocity a particle with the
-     * {@link PropertyType#DIRECTIONAL} property should have.
+     * {@link me.despical.particle.PropertyType#DIRECTIONAL} property should have.
      * <p>
-     * It sets the red value of a {@link PropertyType#COLORABLE}
+     * It sets the red value of a {@link me.despical.particle.PropertyType#COLORABLE}
      * particle. However, since 1.13 a ParticleParam has to be used to set
      * the colors of redstone.
      */
@@ -78,9 +72,9 @@ public final class ParticlePacket {
      * spawn.
      * <p>
      * It represents the y velocity a particle with the
-     * {@link PropertyType#DIRECTIONAL}  property should have.
+     * {@link me.despical.particle.PropertyType#DIRECTIONAL}  property should have.
      * <p>
-     * It sets the green value of a {@link PropertyType#COLORABLE}
+     * It sets the green value of a {@link me.despical.particle.PropertyType#COLORABLE}
      * particle. However, since 1.13 a  ParticleParam has to be used to set
      * the colors of redstone.
      */
@@ -92,9 +86,9 @@ public final class ParticlePacket {
      * spawn.
      * <p>
      * It represents the z velocity a  particle with the
-     * {@link PropertyType#DIRECTIONAL}  property should have.
+     * {@link me.despical.particle.PropertyType#DIRECTIONAL}  property should have.
      * <p>
-     * It sets the blue value of a {@link PropertyType#COLORABLE}
+     * It sets the blue value of a {@link me.despical.particle.PropertyType#COLORABLE}
      * particle. However, since 1.13 a ParticleParam has to be used to set
      * the colors of redstone.
      */
@@ -102,7 +96,7 @@ public final class ParticlePacket {
     /**
      * Normally this field is used to multiply the velocity of a
      * particle by the given speed. There  are however some special cases
-     * where this value is used for something different. (e.g. {@link ParticleEffect#NOTE}).
+     * where this value is used for something different. (e.g. {@link me.despical.particle.ParticleEffect#NOTE}).
      */
     private final float speed;
     /**
@@ -120,7 +114,7 @@ public final class ParticlePacket {
      * Creates a new {@link ParticlePacket} that can be sent to one or multiple
      * {@link Player players}.
      *
-     * @param particle     the {@link ParticleEffect} that should be sent.
+     * @param particle     the {@link me.despical.particle.ParticleEffect} that should be sent.
      * @param offsetX      the offsetX or extra data the particle should have.
      * @param offsetY      the offsetY or extra data the particle should have.
      * @param offsetZ      the offsetZ or extra data the particle should have.
@@ -136,7 +130,7 @@ public final class ParticlePacket {
      * @see #particleData
      * @see ParticleData
      */
-    public ParticlePacket(ParticleEffect particle, float offsetX, float offsetY, float offsetZ, float speed, int amount, ParticleData particleData) {
+    public ParticlePacket(me.despical.particle.ParticleEffect particle, float offsetX, float offsetY, float offsetZ, float speed, int amount, ParticleData particleData) {
         this.offsetX = offsetX;
         this.offsetY = offsetY;
         this.offsetZ = offsetZ;
@@ -163,7 +157,7 @@ public final class ParticlePacket {
      * Creates a new {@link ParticlePacket} that can be sent to one or multiple
      * {@link Player players}.
      *
-     * @param particle the {@link ParticleEffect} that should be sent.
+     * @param particle the {@link me.despical.particle.ParticleEffect} that should be sent.
      * @param offsetX  the offsetX or extra data the particle should have.
      * @param offsetY  the offsetY or extra data the particle should have.
      * @param offsetZ  the offsetZ or extra data the particle should have.
@@ -176,16 +170,16 @@ public final class ParticlePacket {
      * @see #speed
      * @see #amount
      */
-    public ParticlePacket(ParticleEffect particle, float offsetX, float offsetY, float offsetZ, float speed, int amount) {
+    public ParticlePacket(me.despical.particle.ParticleEffect particle, float offsetX, float offsetY, float offsetZ, float speed, int amount) {
         this(particle, offsetX, offsetY, offsetZ, speed, amount, null);
     }
     
     /**
-     * Gets the {@link ParticleEffect} that will be displayed by the client.
+     * Gets the {@link me.despical.particle.ParticleEffect} that will be displayed by the client.
      *
-     * @return The {@link ParticleEffect} which should be displayed by the client.
+     * @return The {@link me.despical.particle.ParticleEffect} which should be displayed by the client.
      */
-    public ParticleEffect getParticle() {
+    public me.despical.particle.ParticleEffect getParticle() {
         return particle;
     }
     
@@ -253,7 +247,7 @@ public final class ParticlePacket {
      */
     public Object createPacket(Location location) {
         try {
-            ParticleEffect effect = getParticle();
+            me.despical.particle.ParticleEffect effect = getParticle();
             ParticleData data = getParticleData();
             double version = ReflectionUtils.MINECRAFT_VERSION;
             if (effect == null || effect.getFieldName().equals("NONE"))
@@ -268,15 +262,15 @@ public final class ParticlePacket {
                     || (data instanceof VibrationData && version >= 17)
                     || (data instanceof ShriekData && version >= 19)
                     || (data instanceof SculkChargeData && version >= 19)
-                    || (data instanceof RegularColor && (version >= 17 && effect.hasProperty(PropertyType.DUST))))
+                    || (data instanceof RegularColor && (version >= 17 && effect.hasProperty(me.despical.particle.PropertyType.DUST))))
                     return createGenericParticlePacket(location, nmsData);
-                if ((data instanceof BlockTexture && effect.hasProperty(PropertyType.REQUIRES_BLOCK))
-                    || (data instanceof ItemTexture && effect.hasProperty(PropertyType.REQUIRES_ITEM)))
+                if ((data instanceof BlockTexture && effect.hasProperty(me.despical.particle.PropertyType.REQUIRES_BLOCK))
+                    || (data instanceof ItemTexture && effect.hasProperty(me.despical.particle.PropertyType.REQUIRES_ITEM)))
                     return createTexturedParticlePacket(location, nmsData);
-                if (data instanceof ParticleColor && effect.hasProperty(PropertyType.COLORABLE))
+                if (data instanceof ParticleColor && effect.hasProperty(me.despical.particle.PropertyType.COLORABLE))
                     return createColoredParticlePacket(location, nmsData);
                 return null;
-            } else if (!effect.hasProperty(PropertyType.REQUIRES_BLOCK) && !effect.hasProperty(PropertyType.REQUIRES_ITEM))
+            } else if (!effect.hasProperty(me.despical.particle.PropertyType.REQUIRES_BLOCK) && !effect.hasProperty(me.despical.particle.PropertyType.REQUIRES_ITEM))
                 return createPacket(effect.getNMSObject(),
                     (float) location.getX(), (float) location.getY(), (float) location.getZ(),
                     getOffsetX(), getOffsetY(), getOffsetZ(),
@@ -313,11 +307,11 @@ public final class ParticlePacket {
      * @param location the {@link Location} the particle should be displayed at.
      * @param param    the pre-built ParticleParam.
      * @return a PacketPlayOutWorldParticles or {@code null} when something goes wrong.
-     * @see PropertyType#REQUIRES_BLOCK
-     * @see PropertyType#REQUIRES_ITEM
+     * @see me.despical.particle.PropertyType#REQUIRES_BLOCK
+     * @see me.despical.particle.PropertyType#REQUIRES_ITEM
      */
     private Object createTexturedParticlePacket(Location location, Object param) {
-        ParticleEffect effect = getParticle();
+        me.despical.particle.ParticleEffect effect = getParticle();
         double version = ReflectionUtils.MINECRAFT_VERSION;
         return createPacket(version < 13 ? effect.getNMSObject() : param,
             (float) location.getX(), (float) location.getY(), (float) location.getZ(),

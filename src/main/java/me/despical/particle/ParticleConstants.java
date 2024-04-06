@@ -1,25 +1,19 @@
 /*
- * MIT License
+ * KOTL - Don't let others climb to top of the ladders!
+ * Copyright (C) 2024  Berke Akçen
  *
- * Copyright (c) 2021 ByteZ1337
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
 package me.despical.particle;
@@ -273,47 +267,47 @@ public final class ParticleConstants {
         double version = ReflectionUtils.MINECRAFT_VERSION;
         
         // Classes
-        ITEM_STACK_CLASS = ParticleMappings.getMappedClass("ItemStack");
-        PACKET_CLASS = ParticleMappings.getMappedClass("Packet");
-        PACKET_PLAY_OUT_WORLD_PARTICLES_CLASS = ParticleMappings.getMappedClass("PacketPlayOutWorldParticles");
-        PARTICLE_ENUM = ParticleMappings.getMappedClass("EnumParticle");
-        PARTICLE_CLASS = ParticleMappings.getMappedClass("Particle");
-        MINECRAFT_KEY_CLASS = ParticleMappings.getMappedClass("MinecraftKey");
+        ITEM_STACK_CLASS = me.despical.particle.ParticleMappings.getMappedClass("ItemStack");
+        PACKET_CLASS = me.despical.particle.ParticleMappings.getMappedClass("Packet");
+        PACKET_PLAY_OUT_WORLD_PARTICLES_CLASS = me.despical.particle.ParticleMappings.getMappedClass("PacketPlayOutWorldParticles");
+        PARTICLE_ENUM = me.despical.particle.ParticleMappings.getMappedClass("EnumParticle");
+        PARTICLE_CLASS = me.despical.particle.ParticleMappings.getMappedClass("Particle");
+        MINECRAFT_KEY_CLASS = me.despical.particle.ParticleMappings.getMappedClass("MinecraftKey");
         VECTOR_3FA_CLASS = version < 17 ? ReflectionUtils.getNMSClass("Vector3f") : (version < 19.3 ? ReflectionUtils.getClassSafe("com.mojang.math.Vector3fa") : ReflectionUtils.getClassSafe("org.joml.Vector3f"));
-        REGISTRY_CLASS = ParticleMappings.getMappedClass("IRegistry");
-        BUILT_IN_REGISTRIES_CLASS = ParticleMappings.getMappedClass("BuiltInRegistries");
-        BLOCK_CLASS = ParticleMappings.getMappedClass("Block");
-        BLOCK_POSITION_CLASS = ParticleMappings.getMappedClass("BlockPosition");
-        BLOCK_DATA_INTERFACE = ParticleMappings.getMappedClass("IBlockData");
-        BLOCKS_CLASS = ParticleMappings.getMappedClass("Blocks");
-        POSITION_SOURCE_CLASS = ParticleMappings.getMappedClass("PositionSource");
-        BLOCK_POSITION_SOURCE_CLASS = ParticleMappings.getMappedClass("BlockPositionSource");
-        ENTITY_POSITION_SOURCE_CLASS = ParticleMappings.getMappedClass("EntityPositionSource");
-        VIBRATION_PATH_CLASS = ParticleMappings.getMappedClass("VibrationPath");
-        ENTITY_CLASS = ParticleMappings.getMappedClass("Entity");
-        ENTITY_PLAYER_CLASS = ParticleMappings.getMappedClass("EntityPlayer");
-        PLAYER_CONNECTION_CLASS = ParticleMappings.getMappedClass("PlayerConnection");
+        REGISTRY_CLASS = me.despical.particle.ParticleMappings.getMappedClass("IRegistry");
+        BUILT_IN_REGISTRIES_CLASS = me.despical.particle.ParticleMappings.getMappedClass("BuiltInRegistries");
+        BLOCK_CLASS = me.despical.particle.ParticleMappings.getMappedClass("Block");
+        BLOCK_POSITION_CLASS = me.despical.particle.ParticleMappings.getMappedClass("BlockPosition");
+        BLOCK_DATA_INTERFACE = me.despical.particle.ParticleMappings.getMappedClass("IBlockData");
+        BLOCKS_CLASS = me.despical.particle.ParticleMappings.getMappedClass("Blocks");
+        POSITION_SOURCE_CLASS = me.despical.particle.ParticleMappings.getMappedClass("PositionSource");
+        BLOCK_POSITION_SOURCE_CLASS = me.despical.particle.ParticleMappings.getMappedClass("BlockPositionSource");
+        ENTITY_POSITION_SOURCE_CLASS = me.despical.particle.ParticleMappings.getMappedClass("EntityPositionSource");
+        VIBRATION_PATH_CLASS = me.despical.particle.ParticleMappings.getMappedClass("VibrationPath");
+        ENTITY_CLASS = me.despical.particle.ParticleMappings.getMappedClass("Entity");
+        ENTITY_PLAYER_CLASS = me.despical.particle.ParticleMappings.getMappedClass("EntityPlayer");
+        PLAYER_CONNECTION_CLASS = me.despical.particle.ParticleMappings.getMappedClass("PlayerConnection");
         CRAFT_ENTITY_CLASS = ReflectionUtils.getCraftBukkitClass("entity.CraftEntity");
         CRAFT_PLAYER_CLASS = ReflectionUtils.getCraftBukkitClass("entity.CraftPlayer");
         CRAFT_ITEM_STACK_CLASS = ReflectionUtils.getCraftBukkitClass("inventory.CraftItemStack");
-        PARTICLE_PARAM_CLASS = ParticleMappings.getMappedClass("ParticleParam");
-        PARTICLE_PARAM_REDSTONE_CLASS = ParticleMappings.getMappedClass("ParticleParamRedstone");
-        PARTICLE_PARAM_DUST_COLOR_TRANSITION_CLASS = ParticleMappings.getMappedClass("ParticleParamDustColorTransition");
-        PARTICLE_PARAM_BLOCK_CLASS = ParticleMappings.getMappedClass("ParticleParamBlock");
-        PARTICLE_PARAM_ITEM_CLASS = ParticleMappings.getMappedClass("ParticleParamItem");
-        PARTICLE_PARAM_VIBRATION_CLASS = ParticleMappings.getMappedClass("ParticleParamVibration");
-        PARTICLE_PARAM_SHRIEK_CLASS = ParticleMappings.getMappedClass("ParticleParamShriek");
-        PARTICLE_PARAM_SCULK_CHARGE_CLASS = ParticleMappings.getMappedClass("ParticleParamSculkCharge");
+        PARTICLE_PARAM_CLASS = me.despical.particle.ParticleMappings.getMappedClass("ParticleParam");
+        PARTICLE_PARAM_REDSTONE_CLASS = me.despical.particle.ParticleMappings.getMappedClass("ParticleParamRedstone");
+        PARTICLE_PARAM_DUST_COLOR_TRANSITION_CLASS = me.despical.particle.ParticleMappings.getMappedClass("ParticleParamDustColorTransition");
+        PARTICLE_PARAM_BLOCK_CLASS = me.despical.particle.ParticleMappings.getMappedClass("ParticleParamBlock");
+        PARTICLE_PARAM_ITEM_CLASS = me.despical.particle.ParticleMappings.getMappedClass("ParticleParamItem");
+        PARTICLE_PARAM_VIBRATION_CLASS = me.despical.particle.ParticleMappings.getMappedClass("ParticleParamVibration");
+        PARTICLE_PARAM_SHRIEK_CLASS = me.despical.particle.ParticleMappings.getMappedClass("ParticleParamShriek");
+        PARTICLE_PARAM_SCULK_CHARGE_CLASS = me.despical.particle.ParticleMappings.getMappedClass("ParticleParamSculkCharge");
         
         // Methods
-        REGISTRY_GET_METHOD = ParticleMappings.getMappedMethod(REGISTRY_CLASS, "Registry.get", MINECRAFT_KEY_CLASS);
+        REGISTRY_GET_METHOD = me.despical.particle.ParticleMappings.getMappedMethod(REGISTRY_CLASS, "Registry.get", MINECRAFT_KEY_CLASS);
         CRAFT_ENTITY_GET_HANDLE_METHOD = ReflectionUtils.getMethodOrNull(CRAFT_ENTITY_CLASS, "getHandle");
         CRAFT_PLAYER_GET_HANDLE_METHOD = ReflectionUtils.getMethodOrNull(CRAFT_PLAYER_CLASS, "getHandle");
-        BLOCK_GET_BLOCK_DATA_METHOD = ParticleMappings.getMappedMethod(BLOCK_CLASS, "Block.getBlockData");
+        BLOCK_GET_BLOCK_DATA_METHOD = me.despical.particle.ParticleMappings.getMappedMethod(BLOCK_CLASS, "Block.getBlockData");
         CRAFT_ITEM_STACK_AS_NMS_COPY_METHOD = ReflectionUtils.getMethodOrNull(CRAFT_ITEM_STACK_CLASS, "asNMSCopy", ItemStack.class);
         
         // Fields
-        ENTITY_PLAYER_PLAYER_CONNECTION_FIELD = ParticleMappings.getMappedField(ENTITY_PLAYER_CLASS, "EntityPlayer.playerConnection", false);
+        ENTITY_PLAYER_PLAYER_CONNECTION_FIELD = me.despical.particle.ParticleMappings.getMappedField(ENTITY_PLAYER_CLASS, "EntityPlayer.playerConnection", false);
         
         // Constructors
         if (version < 13)
@@ -358,12 +352,12 @@ public final class ParticleConstants {
         // Constants
         PARTICLE_TYPE_REGISTRY = ReflectionUtils.readField(
             version < 19.3
-                ? ParticleMappings.getMappedField(REGISTRY_CLASS, "Registry.ParticleTypeRegistry", false)
-                : ParticleMappings.getMappedField(BUILT_IN_REGISTRIES_CLASS, "BuiltInRegistries.ParticleTypeRegistry", false),
+                ? me.despical.particle.ParticleMappings.getMappedField(REGISTRY_CLASS, "Registry.ParticleTypeRegistry", false)
+                : me.despical.particle.ParticleMappings.getMappedField(BUILT_IN_REGISTRIES_CLASS, "BuiltInRegistries.ParticleTypeRegistry", false),
             null);
         BLOCK_REGISTRY = ReflectionUtils.readField(
             version < 19.3
-                ? ParticleMappings.getMappedField(REGISTRY_CLASS, "Registry.BlockRegistry", false)
+                ? me.despical.particle.ParticleMappings.getMappedField(REGISTRY_CLASS, "Registry.BlockRegistry", false)
                 : ParticleMappings.getMappedField(BUILT_IN_REGISTRIES_CLASS, "BuiltInRegistries.BlockRegistry", false),
             null);
     }
