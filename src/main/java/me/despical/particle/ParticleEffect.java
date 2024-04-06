@@ -1295,7 +1295,7 @@ public enum ParticleEffect {
      */
     public static Map<ParticleEffect, Object> NMS_EFFECTS;
 
-    public static final boolean USE_API = ReflectionUtils.MINECRAFT_VERSION >= 1.9;
+    public static final boolean USE_API = ReflectionUtils.MINECRAFT_VERSION >= 9;
     
     static {
         if (!USE_API) {
