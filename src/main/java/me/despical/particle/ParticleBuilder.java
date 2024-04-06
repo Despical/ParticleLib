@@ -125,8 +125,9 @@ public class ParticleBuilder {
         this.location = null;
     }
 
-    public void setParticle(ParticleEffect particle) {
+    public ParticleBuilder setParticle(ParticleEffect particle) {
         this.particle = particle;
+        return this;
     }
 
     /**
