@@ -38,7 +38,7 @@ public final class NMSUtils {
 	}
 
 	private static Particle toBukkit(ParticleEffect effect) {
-		return Particle.valueOf(effect.getFieldName().toUpperCase(Locale.ENGLISH));
+		return Particle.valueOf(effect.name().toUpperCase(Locale.ENGLISH));
 	}
 
 	/**
