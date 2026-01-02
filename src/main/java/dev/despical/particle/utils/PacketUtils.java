@@ -1,6 +1,6 @@
 /*
- * KOTL - Don't let others climb to top of the ladders!
- * Copyright (C) 2024  Berke Akçen
+ * ParticleLib - A library for managing particles
+ * Copyright (C) 2026  Berke Akçen
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,7 +16,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package me.despical.particle.utils;
+package dev.despical.particle.utils;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -51,6 +51,28 @@ public final class PacketUtils {
 	 * <a href="https://www.spigotmc.org/wiki/spigot-nms-and-minecraft-versions-legacy/">Versions Legacy</a>
 	 */
 	public static final String NMS_VERSION;
+	public static final int MINOR_NUMBER, PATCH_NUMBER;
+	public static final String
+			CRAFTBUKKIT_PACKAGE = "org.bukkit.craftbukkit." + NMS_VERSION + '.',
+			NMS_PACKAGE = v(17, "net.minecraft.").orElse("net.minecraft.server." + NMS_VERSION + '.');
+	/**
+	 * A nullable public accessible field only available in {@code EntityPlayer}.
+	 * This can be null if the player is offline.
+	 */
+	private static final MethodHandle PLAYER_CONNECTION;
+	/**
+	 * Responsible for getting the NMS handler {@code EntityPlayer} object for the player.
+	 * {@code CraftPlayer} is simply a wrapper for {@code EntityPlayer}.
+	 * Used mainly for handling packet related operations.
+	 * <p>
+	 * This is also where the famous player {@code ping} field comes from!
+	 */
+	private static final MethodHandle GET_HANDLE;
+	/**
+	 * Sends a packet to the player's client through a {@code NetworkManager} which
+	 * is where {@code ProtocolLib} controls packets by injecting channels!
+	 */
+	private static final MethodHandle SEND_PACKET;
 
 	static { // This needs to be right below VERSION because of initialization order.
 		// This package loop is used to avoid implementation-dependant strings like Bukkit.getVersion() or Bukkit.getBukkitVersion()
@@ -81,8 +103,6 @@ public final class PacketUtils {
 		NMS_VERSION = found;
 	}
 
-	public static final int MINOR_NUMBER, PATCH_NUMBER;
-
 	static {
 		String[] split = NMS_VERSION.substring(1).split("_");
 		if (split.length < 1) {
@@ -112,34 +132,6 @@ public final class PacketUtils {
 			PATCH_NUMBER = 0;
 		}
 	}
-
-	public static String getVersionInformation() {
-		return "(NMS: " + NMS_VERSION + " | " +
-				"Minecraft: " + Bukkit.getVersion() + " | " +
-				"Bukkit: " + Bukkit.getBukkitVersion() + ')';
-	}
-
-	public static final String
-			CRAFTBUKKIT_PACKAGE = "org.bukkit.craftbukkit." + NMS_VERSION + '.',
-			NMS_PACKAGE = v(17, "net.minecraft.").orElse("net.minecraft.server." + NMS_VERSION + '.');
-	/**
-	 * A nullable public accessible field only available in {@code EntityPlayer}.
-	 * This can be null if the player is offline.
-	 */
-	private static final MethodHandle PLAYER_CONNECTION;
-	/**
-	 * Responsible for getting the NMS handler {@code EntityPlayer} object for the player.
-	 * {@code CraftPlayer} is simply a wrapper for {@code EntityPlayer}.
-	 * Used mainly for handling packet related operations.
-	 * <p>
-	 * This is also where the famous player {@code ping} field comes from!
-	 */
-	private static final MethodHandle GET_HANDLE;
-	/**
-	 * Sends a packet to the player's client through a {@code NetworkManager} which
-	 * is where {@code ProtocolLib} controls packets by injecting channels!
-	 */
-	private static final MethodHandle SEND_PACKET;
 
 	static {
 		Class<?> entityPlayer = getNMSClass("server.level", "EntityPlayer");
@@ -173,6 +165,12 @@ public final class PacketUtils {
 	}
 
 	private PacketUtils() {
+	}
+
+	public static String getVersionInformation() {
+		return "(NMS: " + NMS_VERSION + " | " +
+				"Minecraft: " + Bukkit.getVersion() + " | " +
+				"Bukkit: " + Bukkit.getBukkitVersion() + ')';
 	}
 
 	public static <T> VersionHandler<T> v(int version, T handle) {

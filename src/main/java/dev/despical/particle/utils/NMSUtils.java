@@ -1,6 +1,6 @@
 /*
- * KOTL - Don't let others climb to top of the ladders!
- * Copyright (C) 2024  Berke Akçen
+ * ParticleLib - A library for managing particles
+ * Copyright (C) 2026  Berke Akçen
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,9 +16,9 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package me.despical.particle.utils;
+package dev.despical.particle.utils;
 
-import me.despical.particle.ParticleEffect;
+import dev.despical.particle.ParticleEffect;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Particle;
@@ -47,7 +47,7 @@ public final class NMSUtils {
 	public static void display(Object packet, ParticleEffect effect, Location location, int amount) {
 		List<Player> players = Objects.requireNonNull(location.getWorld()).getPlayers();
 
-		if (me.despical.particle.ParticleEffect.USE_API) {
+		if (ParticleEffect.USE_API) {
 			players.forEach(player -> player.spawnParticle(toBukkit(effect), location, amount));
 			return;
 		}
@@ -61,7 +61,7 @@ public final class NMSUtils {
 	 * @param players The players that should see the particle.
 	 */
 	public static void display(Object packet, ParticleEffect effect, Location location, int amount, Player... players) {
-		if (me.despical.particle.ParticleEffect.USE_API) {
+		if (ParticleEffect.USE_API) {
 			Arrays.asList(players).forEach(player -> player.spawnParticle(toBukkit(effect), location, amount));
 			return;
 		}
@@ -76,15 +76,15 @@ public final class NMSUtils {
 	 *               specific {@link Player Players}.
 	 */
 	public static void display(Object packet, ParticleEffect effect, Location location, int amount, Predicate<Player> filter) {
-		if (me.despical.particle.ParticleEffect.USE_API) {
+		if (ParticleEffect.USE_API) {
 			Bukkit.getOnlinePlayers().stream().filter(filter).forEach(player -> player.spawnParticle(toBukkit(effect), location, amount));
 			return;
 		}
 
 		Bukkit.getOnlinePlayers()
-			.stream()
-			.filter(p -> filter.test(p) && p.getWorld().equals(location.getWorld()))
-			.forEach(p -> PacketUtils.sendPacket(p, packet));
+				.stream()
+				.filter(p -> filter.test(p) && p.getWorld().equals(location.getWorld()))
+				.forEach(p -> PacketUtils.sendPacket(p, packet));
 	}
 
 	/**
@@ -99,7 +99,7 @@ public final class NMSUtils {
 		}
 
 		players.stream()
-			.filter(p -> p.getWorld().equals(location.getWorld()))
-			.forEach(p -> PacketUtils.sendPacket(p, packet));
+				.filter(p -> p.getWorld().equals(location.getWorld()))
+				.forEach(p -> PacketUtils.sendPacket(p, packet));
 	}
 }
