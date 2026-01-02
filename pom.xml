@@ -6,9 +6,9 @@
     <!-- This project is a fork from ByteZ1337/ParticleLib -->
     <!-- That supports Minecraft 1.20 and higher versions.  -->
     <modelVersion>4.0.0</modelVersion>
-    <groupId>me.despical</groupId>
+    <groupId>dev.despical</groupId>
     <artifactId>particle</artifactId>
-    <version>1.0.7</version>
+    <version>1.0.8</version>
     <packaging>jar</packaging>
 
     <name>ParticleLib</name>
@@ -31,6 +31,7 @@
         </developer>
         <developer>
             <name>Despical</name>
+            <email>berkeakcen@gmail.com</email>
             <url>https://spigotmc.org/resources/authors/615094</url>
         </developer>
     </developers>
