@@ -28,6 +28,8 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.net.URISyntaxException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
@@ -39,6 +41,8 @@ import static dev.despical.particle.ParticleConstants.BLOCK_POSITION_CONSTRUCTOR
  * @since 30.08.2018
  */
 public final class ReflectionUtils {
+
+	private static final Pattern BUKKIT_VERSION_PATTERN = Pattern.compile("^(\\d+)\\.(\\d+)(?:\\.(\\d+))?");
 
 	/* ---------------- NMS & CB paths ---------------- */
 
@@ -66,16 +70,34 @@ public final class ReflectionUtils {
 	static {
 		String serverPath = Bukkit.getServer().getClass().getPackage().getName();
 		String version = serverPath.substring(serverPath.lastIndexOf(".") + 1);
-		String bukkitVersion = Bukkit.getBukkitVersion();
-		int dashIndex = bukkitVersion.indexOf("-");
-		MINECRAFT_VERSION = Double.parseDouble(bukkitVersion.substring(2, dashIndex > -1 ? bukkitVersion.indexOf("-") : bukkitVersion.length()));
+
+        MINECRAFT_VERSION = parseMinecraftVersion(Bukkit.getBukkitVersion());
 		NET_MINECRAFT_SERVER_PACKAGE_PATH = "net.minecraft" + (MINECRAFT_VERSION < 17 ? ".server." + version : "");
 		CRAFT_BUKKIT_PACKAGE_PATH = "org.bukkit.craftbukkit." + version;
-		try {
+
+        try {
 			zipFile = new ZipFile(ReflectionUtils.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
 		} catch (IOException | URISyntaxException ex) {
 			throw new IllegalStateException("Error while finding zip file", ex);
 		}
+	}
+
+	private static double parseMinecraftVersion(String bukkitVersion) {
+		Matcher matcher = BUKKIT_VERSION_PATTERN.matcher(bukkitVersion);
+
+        if (!matcher.find()) {
+			throw new IllegalStateException("Failed to parse Bukkit version: " + bukkitVersion);
+		}
+
+		int major = Integer.parseInt(matcher.group(1));
+		int minor = Integer.parseInt(matcher.group(2));
+		String patchGroup = matcher.group(3);
+
+		if (major == 1) {
+			return patchGroup == null ? minor : Double.parseDouble(minor + "." + patchGroup);
+		}
+
+		return Double.parseDouble(major + "." + minor);
 	}
 
 	/**
