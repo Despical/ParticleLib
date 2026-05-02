@@ -8,7 +8,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>dev.despical</groupId>
     <artifactId>particle</artifactId>
-    <version>1.0.8</version>
+    <version>1.0.9</version>
     <packaging>jar</packaging>
 
     <name>ParticleLib</name>
@@ -24,12 +24,6 @@
 
     <developers>
         <developer>
-            <name>ByteZ1337</name>
-            <email>0xbytez@gmail.com</email>
-            <organization>xyz.xenondevs</organization>
-            <organizationUrl>https://github.com/ByteZ1337/ParticleLib</organizationUrl>
-        </developer>
-        <developer>
             <name>Despical</name>
             <email>berkeakcen@gmail.com</email>
             <url>https://spigotmc.org/resources/authors/615094</url>
@@ -39,20 +33,6 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
 
     <dependencies>
         <dependency>
@@ -69,4 +49,18 @@
             <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
         </repository>
     </repositories>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
