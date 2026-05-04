@@ -48,7 +48,7 @@
 <dependency>
     <groupId>com.github.Despical</groupId>
     <artifactId>ParticleLib</artifactId>
-    <version>1.0.7</version>
+    <version>1.0.9</version>
 </dependency>
 ```
 
@@ -56,7 +56,7 @@
 
 ```groovy
 dependencies {
-    implementation 'com.github.Despical:ParticleLib:1.0.7'
+    implementation 'com.github.Despical:ParticleLib:1.0.9'
 }
 ```
 
